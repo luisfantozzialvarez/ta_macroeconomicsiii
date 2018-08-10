@@ -55,7 +55,6 @@ class DiscreteGrowthCapital:
     def solve_model(self, k_path):
         k_solution = fsolve(self.system_equations, k_path)
         return k_solution
-        newton()
         
 
     
