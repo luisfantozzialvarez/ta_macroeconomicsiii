@@ -1,2 +1,2 @@
 # ta_macroeconomicsiii
-Auxiliary material for Macroecnomics III course
+Auxiliary material for Macroeconomics III course.
