@@ -1,2 +1,2 @@
 # ta_macroeconomicsiii
-Chunks for Macroecnomics III course
+Auxiliary material for Macroecnomics III course
