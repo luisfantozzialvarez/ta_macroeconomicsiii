@@ -46,15 +46,6 @@ def markov_sim(z, transition, start, N):
         simul[t+1] = z[state]
     return simul
     
-#simulates N repetitions of AR(1) with normally-distributed noise.
-def ar1(rho, mu, sigma_2u, start, N):
-    simul = np.empty(N+1)
-    simul[0] = start
-    for t in range(N):
-        simul[t+1] =  mu*(1-rho) + rho*simul[t] + np.sqrt(sigma_2u)*np.random.randn()
-    
-    return simul
-    
 
 
 
