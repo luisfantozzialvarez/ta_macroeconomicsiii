@@ -28,7 +28,7 @@ class GrowthIID:
         
         #Constructs dim Kprime x dim K x dim Z  K-array by replicating kgrid across columns and matrices
         #also constructs dim Kprime x dim K x dim Z Z-matrix by replicating zvalz across rows and matrices
-        self.gridK, self.gridKprime, self.gridZ   = np.meshgrid(self.kgrid, self.kgrid, self.valz)
+        self.gridKprime, self.gridK, self.gridZ   = np.meshgrid(self.kgrid, self.kgrid, self.valz, indexing = 'ij')
         
         #Steady state of nonstochastic model with shock at average
         self.kss = ((z_bar*self.alpha)/((1/self.beta) + self.delta - 1))**(1/(1-self.alpha))
@@ -38,7 +38,7 @@ class GrowthIID:
         self.kgrid = kgrid
         #Constructs dim Kprime x dim K x dim Z  K-array by replicating kgrid across columns and matrices
         #also constructs dim Kprime x dim K x dim Z Z-matrix by replicating zvalz across rows and matrices
-        self.gridK, self.gridKprime, self.gridZ   = np.meshgrid(self.kgrid, self.kgrid, self.valz)
+        self.gridKprime, self.gridK, self.gridZ   = np.meshgrid(self.kgrid, self.kgrid, self.valz, indexing = 'ij')
     
     def utility(self, c):
         return c**(1- self.eta)/(1-self.eta)
@@ -80,7 +80,7 @@ class GrowthIID:
         policy_index = np.argmax(uu, axis = 0)
         policy_kprime = self.kgrid[policy_index]
         
-        return [V0, policy_kprime]
+        return [V0, policy_kprime, policy_index]
         
     
         
