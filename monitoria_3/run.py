@@ -27,7 +27,7 @@ gridZ, gridK = np.meshgrid(zgrid, kgrid)
 #Initial guess for V0: consume all capital every period forever
 V0 = (1/(1-economia1.beta))*economia1.utility(gridK)
 
-V0, kprime = economia1.value_iteration(V0, 1e-5)
+V0, kprime, index = economia1.value_iteration(V0, 1e-5)
 
 #Capital policy function
 fig = plt.figure()
