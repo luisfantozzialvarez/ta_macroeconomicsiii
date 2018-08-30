@@ -81,6 +81,34 @@ class GrowthIID:
         policy_kprime = self.kgrid[policy_index]
         
         return [V0, policy_kprime, policy_index]
+    
+    def policy_iteration(self, V0, tol = 1e-3, Nh=10):
+        #2D grids of (K,Z)
+        gridK2D, gridZ2D = np.meshgrid(self.kgrid, self.valz, indexing = 'ij')
+        err = tol + 1
+        while err > tol:
+            Vnew, uu = self.bellman(V0)
+            policy_index = np.argmax(uu, axis = 0)
+            
+            for j in range(Nh):
+                c =(1-self.delta)*gridK2D + gridZ2D*self.prodf(gridK2D) \
+        - self.kgrid[policy_index]
+                Vnew = self.utility(c) + self.beta*(Vnew@self.probz)[policy_index]
+                
+            err = np.max(np.abs(Vnew - V0))
+            V0 = Vnew
+            print(err)
+        
+        V0, uu =  self.bellman(V0)
+        
+        policy_index = np.argmax(uu, axis = 0)
+        policy_kprime = self.kgrid[policy_index]
+        
+        return [V0, policy_kprime, policy_index]
+        
+            
+            
+            
         
     
         
